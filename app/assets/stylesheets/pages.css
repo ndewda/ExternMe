@@ -1,0 +1,17 @@
+.panel_form,.my_profile,.my_new_job,.my_joblist,.emailus_selt, .edit_my_account,.update_my_profile,#my_joblist{
+ 
+   margin:50px auto 100px auto;
+
+
+}
+
+
+
+.radientBG{
+   width:100%;
+   position:absolute;
+   top:30%;
+}
+
+
+

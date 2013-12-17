@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+*{
+ margin: 0;
+ padding: 0;
+}
+
+
+
+.clear{
+  clear:both;
+}
+
+body{
+  font-family: 'Open Sans',Arial, Helvetica, sans-serif;
+  z-index:0;
+  background:url('cubeBG.jpg') #fefefe;
+
+}
+.middle{
+  text-align: center;
+}
+
+a:visited{
+  color:#CC0000;
+}
+.account a,.account a:visited{
+  color:black;
+ 
+}
+a,.account a:link{
+  text-decoration:none;
+}
+a:hover,.account a:hover{
+  text-decoration:underline;
+  color:#CC0000;
+}
+
+.linkto_reg{
+  font-size:20px;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+
+
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), url(http://themes.googleusercontent.com/static/fonts/raleway/v6/IczWvq5y_Cwwv_rBjOtT0w.woff) format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Raleway Bold'), local('Raleway-Bold'), url(http://themes.googleusercontent.com/static/fonts/raleway/v6/JbtMzqLaYbbbCL9X6EvaIxsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Playball';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Playball'), local('Playball-Regular'), url(http://themes.googleusercontent.com/static/fonts/playball/v3/QS5qjU-Gc2sqWEq5kDfWQfesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+

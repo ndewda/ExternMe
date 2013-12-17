@@ -1,0 +1,24 @@
+.my_joblist
+  .list_table
+    #Raleway_font
+      My Job List
+    .form_title
+    #myjobs
+      #myjobs_body
+        - @jobs.each do |job|
+          %ul.manager
+            %li
+              .myjobs_item
+                %span.title= link_to "#{job.title}", job_path(job)
+                %span.date= content_tag(:td, job.updated_at.strftime('%Y-%m-%d'), :class => 'normal')
+                .clear
+                = content_tag(:div, job.descp[0,120]+'...', :class => 'desc')
+              .form_title
+                #div_twobtn_float_left
+                  = button_to 'Edit', edit_job_path(job) ,:class => 'common_button_search',:method => :get
+                = button_to 'Delete', job_path(job), :method => :delete, :confirm => 'Are you sure?' ,:class => 'common_button_search'
+                .clear
+    = paginate @jobs
+
+
+

@@ -1,0 +1,78 @@
+.my_profile
+  .list_table
+    .form_title#Raleway_font
+      My Profile
+    %ul.manager
+      %li
+        %span Real Name:
+        -if @profile.name.size==0 or @profile.name.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.name
+        = str
+      %li
+        %span Personal descpriton:
+        -if @profile.desc.size==0 or @profile.desc.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.desc
+        = str
+      .clear
+      .form_title
+        Contact Info.
+      %li
+        %span Alternate Email:
+        -if @profile.altemail.size==0 or @profile.altemail.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.altemail
+        = str
+      %li
+        %span Telephone:
+        -if @profile.tel.size==0 or @profile.tel.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.tel
+        = str
+      .clear
+      .form_title
+        Address
+      %li
+        %span Address line 1:
+        -if @profile.addr1.size==0 or @profile.addr1.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.addr1
+        = str
+      %li
+        %span Address line 2:
+        -if @profile.addr2.size==0 or @profile.addr2.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.addr2
+        = str
+      %li
+        %span City:
+        -if @profile.city.size==0 or @profile.city.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.city
+        = str
+      %li
+        %span state:
+        -if @profile.state.size==0 or @profile.state.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.state
+        = str
+      %li
+        %span Zipcode:
+        -if @profile.zipcode.size==0 or @profile.zipcode.match(/^\s+$/)
+          -str='NULL'
+        -else
+          -str=@profile.zipcode
+        = str
+      .clear
+      .form_title
+    -if @current_user && @current_user==@profile.user
+      = button_to 'Edit', edit_profile_path(@profile) ,:class => 'common_button_search',:method => :get

@@ -1,0 +1,17 @@
+#panel_div
+  #accord
+    %ul.container
+      %li.button
+        = link_to 'Edit Account', user_path(:id => "#{@current_user.name}") 
+      %li.button
+        = link_to 'Edit Profile', edit_user_path(:id => "#{@current_user.name}") 
+      %li.button
+        = link_to 'Post a Jobs', new_job_path 
+      %li.button
+        = link_to 'Delete Account', 'delete' 
+
+
+  #frame
+    %iframe{frameborder: "0", :src => new_job_path, :width=> "1000px"}
+
+

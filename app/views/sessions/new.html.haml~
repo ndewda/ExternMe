@@ -1,0 +1,18 @@
+.login-reg-bg
+  #login-register
+    #Raleway_font
+      Employers sign in
+    -if flash[:login_fail]
+      %p= flash[:login_fail]
+    = form_tag login_create_path do
+      .text_style
+        = text_field :session, 'email',:placeholder => 'Email'
+        %br
+        = password_field :session, 'password', :placeholder => 'Password'
+        %br
+        = submit_tag 'Login',:class => 'common_button_search'
+    .linkto_reg 
+      Not a memeber? 
+      =link_to 'Create an account', new_user_path
+
+

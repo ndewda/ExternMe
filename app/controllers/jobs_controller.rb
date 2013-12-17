@@ -1,0 +1,95 @@
+class JobsController < ApplicationController
+  before_filter :sign_in, except: [:index, :dosearch, :detail]
+  #before_filter :correct_owner, except: [:index, :new, :create, :dosearch]
+  before_filter :correct_owner, only: [:preview, :edit, :update]
+  Perpage = 5
+
+  def correct_owner
+    owner= Job.find(params[:id]).user
+    if @current_user.id!=owner.id
+      flash[:warning]="You can't access that page!"
+      redirect_to jobs_path
+    end
+  end
+
+  def index
+  end
+  
+  def new
+  end
+  
+  def create
+    @job = Job.create_job(params[:job], @current_user)
+
+    if @job.errors.messages.size == 0
+      flash[:notice] = "Your new job was successfully created."
+      redirect_to job_path(@job)
+    else
+      flash.now[:new_job_fail] = @job
+      render(:action=>:new)
+    end
+  end
+  
+  def show
+    id = params[:id]
+    @job = Job.find(id)
+  end 
+
+  def detail
+    id = params[:id]
+    @job = Job.find(id)
+  end
+  
+  def edit
+    @job = Job.find params[:id]
+  end
+  
+  def update
+    @job = Job.find params[:id]
+    @job = Job.update_attrbs(params[:job], @job)
+    if @job.errors.messages.size == 0
+      flash[:notice] = "The job was successfully updated."
+      redirect_to job_path(@job)
+    else
+      flash.now[:updt_job_fail] = @job
+      render :action=>:edit, :id=>@job
+    end
+  end
+
+  def destroy
+    @job = Job.find(params[:id])
+    flash[:notice] = "Job #{@job.title} was deleted."
+    @job.destroy
+    redirect_to myjobs_path(@current_user)
+  end
+  def preview
+    @job_details = params[:job]
+  end
+
+  def dosearch
+    radio = params[:search][:radio]
+    search = params[:search][:title]
+ 
+    case radio
+    when "Title"
+      jobs=Job.where(["LOWER(title) like ?", "%#{search.downcase}%"])
+      @jobs = jobs.page(params[:page]).per(Perpage)
+    when "Company"
+      jobs=Job.where(["LOWER(companyname) like ?", "%#{search.downcase}%"])  
+      @jobs = jobs.page(params[:page]).per(Perpage)
+    when "Location"
+      jobs=Job.where(["LOWER(city) like ? or LOWER(state) like ?", "%#{search.downcase}%", "%#{search.downcase}%"])
+      @jobs = jobs.page(params[:page]).per(Perpage)
+    else
+      jobs=Job.where(["LOWER(title) like ? or LOWER(companyname) like ? or LOWER(city) like ? or LOWER(reqs) like ? or LOWER(state) like ? or LOWER(descp) like ?", "%#{search.downcase}%" , "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%"])	
+      @jobs = jobs.page(params[:page]).per(Perpage)    
+   end 
+   @size = jobs.size
+
+   if(@jobs.size == 0)
+      flash[:notice] = "No jobs match the search terms."
+      redirect_to jobs_path
+    end
+
+  end
+end
